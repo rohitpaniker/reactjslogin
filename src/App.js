@@ -4,7 +4,7 @@ import './App.css';
 import Landing from './pages/Landing';
 import PNF404 from './pages/PNF404';
 import Login from './pages/Login';
-import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import Cookie from 'universal-cookie';
 
 const cookie = new Cookie();
@@ -18,12 +18,13 @@ class App extends Component {
   }
   render() {
     return (
-      <BrowserRouter>
+      <Router>
         <Switch>
-          <Route exact path="/" component={cookie.remove('token') ? Landing : Login}/>
+          <Route exact path="/" component={Landing}/>
+          <Route path="/login" component={Login}/>
           <Route path="*" component={PNF404}/>
         </Switch>
-      </BrowserRouter>
+      </Router>
     );
   }
 }

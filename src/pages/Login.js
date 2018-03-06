@@ -3,7 +3,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-
+import { Redirect } from 'react-router-dom';
 const styles = {
    loginRootStyle: {
      display: 'flex',
@@ -66,14 +66,31 @@ class Login extends Component {
     super(props);
     this.state={
       username:'',
-      password:''
+      password:'',
+      redirect: false,
     }
  }
 
- handleClick = (u, p) => {
-   console.log(u, p);
+ handleClick = async event => {
+   event.preventDefault();
+   try {
+     //await this.login(this.state.username, this.state.password);
+     //this.props.userHasAuthenticated(true);
+     this.props.history.push("/");
+   } catch(e) {
+     console.log(e);
+   }
+   // console.log(u, p);
+   // if(u === 'admin' && p === '1234') {
+   //   this.setState({
+   //     redirect: true
+   //   })
+   // }
  }
   render() {
+    if (this.state.redirect) {
+       return <Redirect to='/'/>;
+     }
     return (
       <div className="loginRoot" style={styles.loginRootStyle}>
         <div className="loginArea" style={styles.loginAreaStyle}>
@@ -96,7 +113,7 @@ class Login extends Component {
                  onChange = {(event,newValue) => this.setState({password:newValue})}
                  />
                <br/>
-               <RaisedButton label="Submit" primary={true} style={styles.raisedButtonStyle} onClick={(u, p) => this.handleClick(this.state.username, this.state.password)}/>
+               <RaisedButton label="Submit" primary={true} style={styles.raisedButtonStyle} onClick={(e) => this.handleClick(e)}/>
                </div>
              </MuiThemeProvider>
           </div>
