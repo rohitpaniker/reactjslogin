@@ -25,7 +25,7 @@ const styles = {
    },
    creativeArea: {
      width: '50%',
-     backgroundImage: `url(${require('./../assets/png/login_creative.jpg')})`,
+     backgroundImage: `url(${require('./../assets/png/classes.jpg')})`,
      height: '100%',
      backgroundRepeat: 'no-repeat',
      backgroundSize: 'cover',
